@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_145256) do
+ActiveRecord::Schema.define(version: 2020_07_26_133254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.float "price_per_day"
+    t.string "type"
+    t.string "brand"
+    t.string "modele"
+    t.integer "year"
+    t.integer "km"
+    t.boolean "status_disponibility"
+    t.string "photo"
+    t.text "description"
+    t.integer "power"
+    t.string "type_of_carburator"
+    t.integer "number_of_place"
+    t.string "gear_lever"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,6 +41,10 @@ ActiveRecord::Schema.define(version: 2020_07_16_145256) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "birthday_date"
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
