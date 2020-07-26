@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'date'
+puts 'Clean database...'
+
 puts 'destroying car...'
 
 Car.destroy_all
@@ -16,6 +19,12 @@ puts 'destroying user...'
 User.destroy_all
 
 puts 'user destroyed !'
+
+puts 'Reservation user...'
+
+Reservation.destroy_all
+
+puts 'Reservation destroyed !'
 
 puts 'Creating car...'
 
@@ -68,5 +77,30 @@ Car.all.each do |car|
   puts "#{car.brand} #{car.modele} #{car.year}"
 end
 
+user_1 = User.first
+car_1 = Car.first
 
+reservation_data = {
+  user_id: user_1.id,
+  car_id: car_1.id,
+  city: "Marseille",
+  price: 777,
+  status: 'En Cours',
+  location_delivery_to_start: 'marseille 5eme',
+  location_delivery_to_finish: 'marseille 7eme',
+  # date_start: Datetime.now,
+  # date_end: Datetime.now
+}
+
+reservation = Reservation.new(reservation_data)
+
+puts 'reservation created !'
+
+reservation.save
+
+puts 'reservation saved !'
+
+Reservation.all.each do |reservation|
+  puts "#{reservation.user.first_name} #{reservation.user.id} #{reservation.car.brand} #{reservation.car.id}"
+end
 
