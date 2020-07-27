@@ -1,0 +1,7 @@
+<% @cars.each do |car| %>
+  <%= "#{car.brand} #{car.modele} #{car.price_per_day}/per day"%>
+  <%= link_to car_path(car), method: 'delete', data: { confirm: "Are you sure?" } do %>
+        <i class="fa fa-trash destroy_dose"></i>
+      <% end %>
+<% end %>
+
