@@ -1,0 +1,15 @@
+<h1>Faire une réservations</h1>
+
+<%= simple_form_for(@car) do |f| %>
+    <%= f.input :price_per_day %>
+    <%= f.input :brand %>
+    <%= f.input :modele %>
+    <%= f.input :year %>
+    <%= f.input :km %>
+    <%= f.input :power %>
+    <%= f.input :type_of_carburator %>
+    <%= f.input :number_of_place %>
+    <%= f.input :gear_lever %>
+    <%= f.input :description, as: :text %>
+    <%= f.submit %>
+<% end %>

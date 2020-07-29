@@ -1,0 +1,12 @@
+<h1>Mes Réservations</h1>
+
+<% @reservations.each do |reservation| %>
+  <%= "#{reservation.car.brand} #{reservation.car.modele}" %>
+  <%= " prix : #{reservation.price}" %>
+  <%= " ville : #{reservation.city}" %>
+  <%= "livraison a #{reservation.location_delivery_to_start}" %>
+  <%= "recup a  #{reservation.location_delivery_to_finish}" %>
+  <%= link_to reservation_path(reservation), method: 'delete', data: { confirm: "Are you sure?" } do %>
+      <i class="fa fa-trash destroy_dose"></i>
+    <% end %>
+<% end %>

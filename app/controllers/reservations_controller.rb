@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
   # before_action :set_reservation, only: [:new, :create]
 
-  # def index
-  #   @reservations = current_user.reservations
-  # end
+  def index
+    @reservations = current_user.reservations
+  end
 
   # def new
   #   @reservation = Reservation.new
