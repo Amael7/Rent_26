@@ -1,15 +1,23 @@
 <h1>Faire une réservations</h1>
 
-<%= simple_form_for(@car) do |f| %>
-    <%= f.input :price_per_day %>
-    <%= f.input :brand %>
-    <%= f.input :modele %>
-    <%= f.input :year %>
-    <%= f.input :km %>
-    <%= f.input :power %>
-    <%= f.input :type_of_carburator %>
-    <%= f.input :number_of_place %>
-    <%= f.input :gear_lever %>
-    <%= f.input :description, as: :text %>
+<%= simple_form_for(@reservation) do |f| %>
+    <%= f.input :city %>
+    <%= f.input :location_delivery_to_start %>
+    <%= f.input :location_delivery_to_finish %>
+    <%= f.input :date_start %>
+    <%= f.input :date_end %>
     <%= f.submit %>
 <% end %>
+
+<!-- données nécessaire a la creation d'un resa -->
+<!-- reservation_data1 = {
+  user_id: user_2.id,
+  car_id: car_2.id,
+  city: "Marseille",
+  price: 777, donné par le site qui calcule le prix * le nombre de jour
+  status: 'En Cours',
+  location_delivery_to_start: 'marseille 7eme',
+  location_delivery_to_finish: 'marseille 12eme',
+  # date_start: Datetime.now,
+  # date_end: Datetime.now
+} -->

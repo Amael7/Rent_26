@@ -52,6 +52,30 @@ car.save
 
 puts 'car saved !'
 
+car_data1 = {
+  price_per_day: 29.99,
+  # type: "test",
+  brand: 'Peugeot',
+  modele: '307',
+  year: 2007,
+  km: 30.000,
+  status_disponibility: true,
+  photo: 'https://source.unsplash.com/collection/190727/1600x900',
+  description: 'une 307 du tonnerre',
+  power: 45,
+  type_of_carburator: 'fuel',
+  number_of_place: 3,
+  gear_lever: 'Manual'
+}
+
+car1 = Car.new(car_data1)
+
+puts 'car1 created !'
+
+car1.save
+
+puts 'car1 saved !'
+
 user_data = {
   first_name: 'Bilel',
   last_name: 'Ouri',
@@ -69,6 +93,23 @@ user.save
 
 puts 'user saved !'
 
+user_data1 = {
+  first_name: 'Steph',
+  last_name: 'Mtr',
+  phone_number: '443143413',
+  email: 's@gmail.com',
+  birthday_date: '15/03/1996',
+  password: 'password'
+}
+
+user1 = User.new(user_data1)
+
+puts 'user1 created !'
+
+user1.save
+
+puts 'user1 saved !'
+
 User.all.each do |user|
   puts "#{user.first_name} #{user.last_name} #{user.email}"
 end
@@ -79,6 +120,9 @@ end
 
 user_1 = User.first
 car_1 = Car.first
+
+user_2 = User.last
+car_2 = Car.last
 
 reservation_data = {
   user_id: user_1.id,
@@ -99,6 +143,27 @@ puts 'reservation created !'
 reservation.save
 
 puts 'reservation saved !'
+
+reservation_data1 = {
+  user_id: user_2.id,
+  car_id: car_2.id,
+  city: "Marseille",
+  price: 777,
+  status: 'En Cours',
+  location_delivery_to_start: 'marseille 7eme',
+  location_delivery_to_finish: 'marseille 12eme',
+  # date_start: Datetime.now,
+  # date_end: Datetime.now
+}
+
+reservation1 = Reservation.new(reservation_data1)
+
+puts 'reservation1 created !'
+
+reservation1.save
+
+puts 'reservation1 saved !'
+
 
 Reservation.all.each do |reservation|
   puts "#{reservation.user.first_name} #{reservation.user.id} #{reservation.car.brand} #{reservation.car.id}"

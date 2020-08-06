@@ -5,24 +5,29 @@ class ReservationsController < ApplicationController
     @reservations = current_user.reservations
   end
 
-  # def new
-  #   @reservation = Reservation.new
-  # end
+  def new
+    @reservation = Reservation.new
+    @car = Car.find(params[:car_id])
 
-  # def create
-  #   @reservation = Reservation.new(reservation_params)
-  #   @reservation.nanny = @nanny
-  #   @reservation.user = current_user
-  #   dispo = true
-  #   @nanny.reservations.each do |resa|
-  #     @start = resa.start_date
-  #     @end = resa.end_date
-  #     if @reservation.start_date.between?(@start, @end) || @reservation.end_date.between?(@start, @end)
-  #       flash.now[:notice] = "#{@nanny.first_name} n'est pas disponible à ces dates"
-  #       dispo = false
-  #     end
-  #   end
-  #   set_total_price
+    # la ligne 12 etait un test pour afficher quel voiture on choissisait pour le formulaire de creation d'un resa mais tu peux le supprimer si tu veux
+    # @cars_name = @cars.map { |car| "#{car.brand} #{car.modele}"}
+  end
+
+  def create
+    @reservation = Reservation.new(reservation_params)
+    @car = Car.find(params[:car_id])
+    @reservation.car = @car
+    @reservation.user = current_user
+    dispo = true
+    @car.reservations.each do |resa|
+      @start = resa.date_start
+      @end = resa.date_end
+      if @reservation.date_start.between?(@start, @end) || @reservation.date_end.between?(@start, @end)
+        flash.now[:notice] = "#{@car.brand} #{@car.modele} n'est pas disponible à ces dates"
+        dispo = false
+      end
+    end
+    # set_total_price
 
   #   if dispo == true && @reservation.save
 
@@ -41,14 +46,20 @@ class ReservationsController < ApplicationController
 
   #     # @reservation.update(checkout_session_id: session.id)
 
-  #     redirect_to reservations_path
-  #   else
-  #     @nannies = Nanny.all
-  #     render '../views/nannies/index'
-  #   end
-  # end
+    redirect_to root_path
+    # else
+    #   @cars = Car.all
+    #   render '../views/cars/index'
+    # end
+  end
 
-  # private
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to reservations_path
+  end
+
+  private
 
   # def set_total_price
   #   @days = (@reservation.end_date - @reservation.start_date).to_i
@@ -59,7 +70,7 @@ class ReservationsController < ApplicationController
   #   @reservation = Reservation.find(params[:reservation_id])
   # end
 
-  # def reservation_params
-  #   params.require(:reservation).permit(:start_date, :end_date, :user_id, :nanny_id, :state)
-  # end
+  def reservation_params
+    params.require(:reservation).permit(:user_id, :car_id, :city, :status, :location_delivery_to_start, :location_delivery_to_finish, :date_start, :date_end, :price)
+  end
 end

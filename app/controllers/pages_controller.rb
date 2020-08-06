@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @cars = Car.all
+    @reservation = Reservation.new
   end
 
   def contact

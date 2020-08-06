@@ -3,6 +3,24 @@
 
 <% @cars.each do |car| %>
   <%= "#{car.brand} #{car.modele} #{car.price_per_day}/per day"%>
+  <%= link_to 'Reserver cette voiture', new_car_reservation_path(car)  %>
 <% end %>
 
-<%# link_to 'Faire une reservation', new_reservation_path  %>
+<br>
+
+<!-- formulaire pour la creation d'un résa directement dans la page home du site -->
+<!-- formulaire a terminé  -->
+<!-- il faut tout decommenter en remplacant les # par un = sauf pour le END ou on enleve juste le # -->
+
+  <!-- <h1>Faire une réservations</h1> -->
+
+  <%# simple_form_for(@reservation) do |f| %>
+      <%# f.input :city %>
+      <%# f.input :location_delivery_to_start %>
+      <%# f.input :location_delivery_to_finish %>
+      <%# f.input :date_start %>
+      <%# f.input :date_end %>
+      <%# f.input :car, collection: @cars %>
+      <!-- a verifier pour le car collection pour que on affiche le nom de la voiture avec les @cars -->
+      <%# f.submit %>
+  <%# end %>
